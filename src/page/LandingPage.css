@@ -1,0 +1,9 @@
+.LPage {
+    background-color: lightgray;
+    background: url("../img/maintenance1.jpg");
+    background-size: cover;
+}
+
+section {
+    color: whitesmoke;
+}

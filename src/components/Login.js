@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { idLogin } from '../actions';
+import { idNama} from '../actions';
+import css from './login.css';
 
-class App extends Component {
+
+class Login extends Component {
 
     state = {
         redirect_profile: false
@@ -18,9 +22,12 @@ class App extends Component {
         )
 
         .then((x)=>{
-            if (x.data.account_id > 0){
-                var logid = x.data.account_id
+            console.log('ngecek', x.data.result[0].nama);
+            if (x.data.result[0].account_id > 0){
+                var logid = x.data.result[0].account_id
+                var namaid = x.data.result[0].nama
                 this.props.idLogin(logid)
+                this.props.idNama(namaid)
                 this.setState ({redirect_profile : true})
             }
             else {
@@ -42,9 +49,10 @@ class App extends Component {
         ) 
 
         .then((y)=>{
-            if (y.data.loginstatus === true){
-                console.log(y.data)
-            }
+            // if (y.data.loginstatus === true){
+                alert('Selamat! Data anda sudah terdaftar')
+                // console.log(y.data)
+            // }
         })
     }
 
@@ -56,7 +64,7 @@ class App extends Component {
         const { redirect_profile } = this.state;
         if (redirect_profile) {
             this.setState({ redirect_profile: false})
-            return (< Redirect to='/' />)
+            return (< Redirect to='/Profilpage' />)
         }
         return (
 
@@ -126,7 +134,7 @@ class App extends Component {
         </div>
     </div> */}
 
-                <div className="container-fluid col-lg-6">
+                <div className="container-fluid col-lg-6 logins" style={{marginRight:'80px', marginBottom:'50px'}}>
 
                     <ul className="nav nav-tabs" role="tablist">
                         <li className="nav-item">
@@ -137,21 +145,21 @@ class App extends Component {
                         </li>
                     </ul>
 
-                    <div className="tab-content">
+                    <div className="tab-content loginmenu">
                         <div id="login" className="container tab-pane active"> <br />
-                            <h5> Sign In </h5>
+                            <h5 style={{ color: 'white' }}> Sign In </h5>
                             <input type="text" className="form-control" ref="user" placeholder="Username..." /> <br />
                             <input type="password" className="form-control" ref="pwd" placeholder="Password..." /> <br />
                             <button type="button" className="btn btn-info" onClick={() => { this.login(this.refs) }}> Login </button>
 
                         </div>
                         <div id="register" className="container tab-pane fade"> <br />
-                            <h5> Sign Up </h5>
+                            <h5 style={{ color: 'white' }}> Sign Up </h5>
                             <input type="text" className="form-control" ref="user2" placeholder="Username..." /> <br />
                             <input type="password" className="form-control" ref="pwd2" placeholder="Password..." /> <br />
                             <input type="text" className="form-control" ref="namalengkap" placeholder="Nama Lengkap..." /> <br />
                             <input type="number" className="form-control" ref="telp" placeholder="No HP..." /> <br />
-                            <button type="button" className="btn btn-info" onClick={() => { this.daftar(this.refs) }}> Vroom Vroom Bitch! </button>
+                            <button type="button" className="btn btn-info" onClick={() => { this.daftar(this.refs) }}> Daftar! </button>
                         </div>
                     </div>
                 </div>
@@ -161,4 +169,6 @@ class App extends Component {
     }
 }
 
-export default App;
+
+
+export default connect(null, {idLogin, idNama})(Login);

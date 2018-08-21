@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { idNama } from '../actions';
+import { IDno } from '../actions';
 
 
-class Header extends Component {
+
+class Header2 extends Component {
 
 
 
@@ -20,18 +25,15 @@ class Header extends Component {
                         <div className="collapse navbar-collapse" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active">
-                                    <a className="nav-link" href="#">Home
-                                        <span className="sr-only"> (current) </span>
-                                    </a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#"> About </a>
+
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#"> Services </a>
+                                    <Link to={`/Profilpage/${this.props.id}`} className="nav-link" href="#"> {this.props.nama} </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#"> Contact </a>
+
                                 </li>
                             </ul>
                         </div>
@@ -46,4 +48,13 @@ class Header extends Component {
 }
 
 
-export default Header;
+const mapStatetoProps = (state) => {
+    const id = state.login
+    const no = state.nomor
+    const nama = state.nama
+
+    return { id, no, nama }
+}
+
+
+export default connect(mapStatetoProps, { IDno, idNama })(Header2);

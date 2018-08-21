@@ -1,0 +1,17 @@
+.sidebar {
+  background-color: #dedede;
+  height: 680px;
+  margin-top: 80px;
+  border: inset grey;
+}
+
+li {
+  list-style: none;
+  margin: 10px;
+  
+}
+
+a {
+  text-align: left;
+} 
+

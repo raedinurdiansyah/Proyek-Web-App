@@ -39,11 +39,12 @@ class LPdetail extends Component {
                         <div className="row">
                             <div className="col-lg-6">
                                 <h1 className="mt-5"> Rawat Mobilmu </h1>
-                                <p> Merawat mobil sekarang jadi mudah dengan hadirnya CARVIS. Applikasi bodoh pertama yang mencoba mensupport maintenance kendaraan pribadi kamu!</p>
+                                <p> Merawat mobil sekarang jadi mudah dengan hadirnya CARVIS. Aplikasi payah pertama yang mencoba mensupport maintenance kendaraan pribadi kamu!</p>
                             </div>
                         </div>
                     </div>
                 </section>
+                
 
 
 
